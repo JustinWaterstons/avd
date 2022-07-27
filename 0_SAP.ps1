@@ -31,7 +31,7 @@ Set-Location $extractLocation
 
 Start-Process `
     -FilePath .\hdbinst.exe `
-    -Args $args `
+    -Args $Args `
     -Wait
 Write-Host 'AIB Customisation: Installation of the SAP HANA Database Client finished'
 
@@ -43,12 +43,6 @@ Copy-Item -Path "\\10.1.10.4\software\B1H100002111HF_1-70004122" -Destination $L
 Write-Host 'AIB Customisation: Installing the SAP Business 1 Client'
 $clientPath = $LocalPath + "\\B1H100002111HF_1-70004122\Packages.x64\Client"
 
-$sapInstall = "c:\Program Files\SAP\SAP Business One Client\HDB@10.1.10.4:30013"
-
-$Args = @" 
-"/S" "/z'$sapInstall'"
-"@
-
 Set-Location $clientPath
 Start-Process `
     -FilePath .\setup.exe `
@@ -57,5 +51,7 @@ Start-Process `
 Write-Host 'AIB Customisation: Installation of the SAP Business 1 Client finished'
 
 Set-Location $LocalPath
-curl https://stappinkavdscripts.blob.core.windows.net/scripts/b1-local-machine.xml
+curl https://stappinkavdscripts.blob.core.windows.net/scripts/b1-local-machine.xml -UseBasicParsing
 Copy-Item .\b1-local-machine.xml -Destination "C:\Program Files\sap\SAP Business One\Conf" -Force
+Set-Location C:\temp
+Remove-Item $LocalPath -Force -Recurse
