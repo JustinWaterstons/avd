@@ -50,12 +50,11 @@ Start-Process `
     -Wait
 Write-Host 'AIB Customisation: Installation of the SAP Business 1 Client finished'
 
+
+# Download the SAP config file
+Write-Host 'AIB Customisation: Copying the SAP machine XML'
+$sapInstallFolder = "C:\Program Files\sap\SAP Business One\Conf"
+Copy-Item -Path "\\10.1.10.4\software\DI_API\b1-local-machine.xml" -Destination $sapInstallFolder -Force 
+Write-Host 'AIB Customisation: Copying complete of the machine XML'
 Set-Location $LocalPath
-Write-Host "AIB Customisation: Downloading the SAP configuration file"
-$webSocketsURL = 'https://stappinkavdscripts.blob.core.windows.net/scripts/b1-local-machine.xml'
-$webSocketsInstallerXml = 'b1-local-machine.xml'
-$outputPath = $LocalPath + '\' + $webSocketsInstallerXml
-(New-Object System.Net.WebClient).DownloadFile("$webSocketsURL","$outputPath")
-Copy-Item .\b1-local-machine.xml -Destination "C:\Program Files\sap\SAP Business One\Conf" -Force
-Set-Location C:\temp
 Remove-Item $LocalPath -Force -Recurse
