@@ -33,7 +33,7 @@ Write-Host 'AIB Customisation: Downloading of the Adobe-Acrobat-Reader-DC app fi
 
 #region Adobe Acrobat Reader
 try {
-    Start-Process -filepath 'C:\temp\AcroRdrDC2200120142_en_US.exe' -Wait -ErrorAction Stop -ArgumentList '/sAll', '/rs', '/msi', 'EULA_ACCEPT=YES'
+    Start-Process -filepath 'C:\temp\AcroRdrDC2200220191_en_US.exe' -Wait -ErrorAction Stop -ArgumentList '/sAll', '/rs', '/msi', 'EULA_ACCEPT=YES'
     if (Test-Path "C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRD32.exe") {
         Write-Host "Acrobat Reader has been installed"
     }
