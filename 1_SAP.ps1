@@ -54,7 +54,9 @@ Write-Host 'AIB Customisation: Installation of the SAP Business 1 Client finishe
 # Download the SAP config file
 Write-Host 'AIB Customisation: Copying the SAP machine XML'
 $sapInstallFolder = "C:\Program Files\sap\SAP Business One\Conf"
+$sapDIInstallFolder = "C:\Program Files\sap\SAP Business One DI API\Conf"
 Copy-Item -Path "\\10.1.10.4\software\DI_API\b1-local-machine.xml" -Destination $sapInstallFolder -Force 
+Copy-Item -Path "\\10.1.10.4\software\DI_API\b1-local-machine.xml" -Destination $sapDIInstallFolder -Force 
 Write-Host 'AIB Customisation: Copying complete of the machine XML'
 Set-Location $LocalPath
 Remove-Item $LocalPath -Force -Recurse
